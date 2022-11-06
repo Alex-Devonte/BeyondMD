@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  my-httpd-service:
+    container_name: beyondmd
+    image: my-httpd-image:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./website:/usr/local/apache2/htdocs
