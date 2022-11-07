@@ -15,10 +15,10 @@ p {
   font-weight: bold;
 }
 
-.beyond-blue {
-  color: #1D5598;
+.beyond-blue-dark {
+  color: #00254B;
 }
 
-.beyond-green {
-  color: #7CC26E;
+.beyond-blue-light {
+  color: #03A5E6;
 }
