@@ -8,10 +8,11 @@ ENV PYTHONUNBUFFERED=1
 # Set work directory
 WORKDIR /django_backend
 
+# Install postgres
 RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
     && pip install psycopg2
-    
+
  # Install dependencies
 COPY requirements.txt .
 
