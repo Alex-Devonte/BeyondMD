@@ -1,9 +1,0 @@
-version: "3.9"
-services:
-  myapp:
-    build: ../my-app
-    container_name: myapp_c
-    ports:
-      - '3000:3000'
-    stdin_open: true
-    tty: true
