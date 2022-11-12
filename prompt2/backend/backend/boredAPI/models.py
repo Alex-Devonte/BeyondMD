@@ -18,6 +18,9 @@ class BoredAPI(models.Model):
         ('busywork', 'Busywork')
     ]
 
+    #list comprehension for getting numbers in the range 1,5
+    PARTICIPANTS_RANGE = ([(i,i) for i in range(1, 6)])
+
     activity = models.CharField(max_length=120)
     type = models.CharField(max_length=20, choices=ACTIVITY_TYPE)
-    participants = models.CharField(max_length=2)
+    participants = models.CharField(max_length=1, choices=PARTICIPANTS_RANGE)
