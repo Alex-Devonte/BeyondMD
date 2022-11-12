@@ -22,6 +22,10 @@ services:
     #must wait for db services to run before starting backend
     depends_on:
       - db
+    links:
+      - db:db
+    networks:
+      - djangonetwork
     command: python manage.py runserver 0.0.0.0:8000
     
   #configurations for postgres db
@@ -32,5 +36,11 @@ services:
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
     container_name: postgres
+    networks:
+      - djangonetwork
 volumes:
  postgres_data:
+
+networks:
+  djangonetwork:
+    driver: bridge
