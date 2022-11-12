@@ -1,3 +1,4 @@
+#Select base image for Docker
 FROM python:3.12.0a1-slim-bullseye
 
 # Set environment variables

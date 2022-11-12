@@ -19,6 +19,7 @@ services:
     container_name: backend
     ports:
       - "8000:8000"
+    #must wait for db services to run before starting backend
     depends_on:
       - db
     command: python manage.py runserver 0.0.0.0:8000
