@@ -14,7 +14,7 @@ services:
   #configurations for django backend
   backend:
     build:
-      context: ./backend/backend/
+      context: ./prompt3/backend
       dockerfile: Dockerfile
     container_name: backend
     ports:
@@ -34,6 +34,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
       - "POSTGRES_HOST_AUTH_METHOD=trust"
     container_name: postgres
     networks:
