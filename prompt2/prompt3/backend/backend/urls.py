@@ -14,8 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+from bored_activities import views
+
+#Includes routes for CRUD actions as well as default API root view
+router = routers.DefaultRouter()
+router.register(r'bored_activities', views.Bored_Activities_View, 'bored_activities')
+
+#/bored_activities/ returns list of all items
+#CREATE and READ operations can be performed
+
+#/bored_activities/:id returns activity with id being the primary key
+#UPDATE and DELETE operations can be performed
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
 ]
