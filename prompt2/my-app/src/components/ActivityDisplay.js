@@ -15,7 +15,7 @@ function ActivityDisplay() {
             }
         );
     }
-    //Todo: find way to display on click
+   
     return (
         <div id='activity-container'>
             <h2>Feeling bored?</h2>
