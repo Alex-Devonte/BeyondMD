@@ -4,3 +4,4 @@ djangorestframework
 sqlparse==0.4.3
 tzdata==2022.6
 psycopg2-binary==2.9.3
+django-cors-headers
