@@ -4,17 +4,25 @@ import './ActivityDisplay.css';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import { CardActions, CardContent, Fab, Tooltip, Typography } from '@mui/material';
+import { Alert, CardActions, CardContent, Fab, Fade, Tooltip, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 function ActivityDisplay() {
     //Declare state variable 'activity'
     const [activity, setActivity] = useState({});
 
+    //Declare state variables for alert messages
+    const [alert, setAlert] = useState(false);
+    const [alertMsg, setAlertMsg] = useState("");
+    const [severity, setSeverity] = useState("success")
+    const [alertStatus, setAlertStatus] = useState(true);
+
     //Make call to api to set activity variable
     const getActivity = () => {
         axios.get("https://www.boredapi.com/api/activity").then(
             (response) => {
+                //Reset alert status
+                setAlertStatus(true);
                 setActivity({activity: response.data.activity, type: response.data.type, participants: response.data.participants});
             }
         );
@@ -22,10 +30,17 @@ function ActivityDisplay() {
 
     //Save activity from API to Postgres database
     const saveActivity = () => {
-        //Call getActivity to generate new activity after posting to database
-        axios
-        .post("http://localhost:8000/api/bored_activities/", activity)
-        .then((response) => getActivity());
+        axios.post("http://localhost:8000/api/bored_activities/", activity)
+        .then((response) => {
+            //Call getActivity to generate new activity after posting to database
+            getActivity();
+            setAlert(true);
+            setAlertMsg("Activity successfully saved!");
+        }).catch((error) => {
+            setSeverity("error");
+            setAlert(true);
+            setAlertMsg("There was an issue with saving your activity.")
+        });
     }
    
     return (
@@ -60,6 +75,18 @@ function ActivityDisplay() {
                     </CardContent>
                 </Card>
             : null}
+            {/* Use MUI Fade transition with setTimeout to have alert leave after specified time */}
+            {alert ? 
+                <Fade in={alertStatus} timeout={500}
+                 addEndListener={() => {
+                    setTimeout(() => {
+                        setAlertStatus(false);
+                    }, 2000);
+                 }}>
+                    <Alert severity={severity}>
+                        <strong>{alertMsg}</strong>
+                    </Alert>
+                </Fade> : null}         
         </div>
     )
 }
