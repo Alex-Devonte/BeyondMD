@@ -1,0 +1,8 @@
+.edit-icon, .delete-icon {
+  margin: 0 5px;
+}
+
+.edit-icon:hover, .delete-icon:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
