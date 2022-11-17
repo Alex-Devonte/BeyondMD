@@ -22,7 +22,10 @@ function ActivityDisplay() {
 
     //Save activity from API to Postgres database
     const saveActivity = () => {
-        console.log("SAVED");
+        //Call getActivity to generate new activity after posting to database
+        axios
+        .post("http://localhost:8000/api/bored_activities/", activity)
+        .then((response) => getActivity());
     }
    
     return (
