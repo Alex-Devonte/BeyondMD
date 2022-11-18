@@ -4,6 +4,7 @@ import {useEffect, useState } from "react";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './Activities.css';
+import Tooltip from "@mui/material/Tooltip";
 
 function Activities() {
     const [activities, setActivities] = useState([{}]);
@@ -67,8 +68,12 @@ function Activities() {
                         <TableCell>{type}</TableCell>
                         <TableCell>{participants}</TableCell>
                         <TableCell>
-                            <EditIcon   className="edit-icon"   sx={{color: '#f3b24a'}}/>
-                            <DeleteIcon className="delete-icon" onClick={() => handleDelete(id)} sx={{color: '#ca0000'}}/>
+                            <Tooltip title="Edit Activity">
+                                <EditIcon   className="edit-icon"   sx={{color: '#f3b24a'}}/>
+                            </Tooltip>
+                            <Tooltip title="Delete Activity">
+                                <DeleteIcon className="delete-icon" onClick={() => handleDelete(id)} sx={{color: '#ca0000'}}/>
+                            </Tooltip>
                             <Dialog open={open} onClose={handleClose}>
                                 <DialogContent>
                                     Are you sure you want to delete this activity?
