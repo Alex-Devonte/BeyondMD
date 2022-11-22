@@ -239,7 +239,7 @@ function Activities() {
 
     return (
         <div>
-            <Button onClick={handleOpenAdd}>Add Activity</Button>
+            <Button variant="contained" onClick={handleOpenAdd}>Add your own activity</Button>
             <Table>
                 <TableHead>
                     <TableRow>
