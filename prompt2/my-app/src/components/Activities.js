@@ -239,6 +239,72 @@ function Activities() {
 
     return (
         <div id="table-container">
+            {/* Add Dialog */}
+            <Dialog open={openAdd} onClose={handleCloseAdd}>
+                <DialogTitle>Add Activity</DialogTitle>
+                <DialogContent>
+                    <TextField id="addActivityName" autoFocus={true} required={true} label="Activity" onChange={(e) => setActivityName(e.target.value)} fullWidth variant="standard"/>
+                    <TextField id="addActivityType" required={true}  select label="Type" defaultValue="" onChange={(e) => setActivityType(e.target.value)} fullWidth variant="filled">
+                        {activityTypes.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.value}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <TextField id="addParticipantsNo" required={true} select label="Participants" defaultValue='' onChange={(e) => setActivityParticipants(e.target.value)} fullWidth variant="filled">
+                        {participantsNo.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.value}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </DialogContent>
+                <DialogActions>
+                    <Button disabled={submitDisabled} onClick={() => handleAdd()}>Add</Button>
+                    <Button onClick={handleCloseAdd}>Cancel</Button>
+                </DialogActions>
+            </Dialog>
+            {/* End Add Dialog */}
+
+            {/* Edit Dialog */}
+            <Dialog open={openEdit} onClose={handleCloseEdit}>
+                <DialogTitle>Edit Activity</DialogTitle>
+                <DialogContent>
+                    <TextField id="activityName" required={true} label="Activity" value={editActivityName} onChange={(e) => setEditActivityName(e.target.value)} fullWidth variant="standard"/>
+                    <TextField id="activityType"required={true}  select label="Type" value={editActivityType} onChange={(e) => setEditActivityType(e.target.value)} fullWidth variant="filled">
+                        {activityTypes.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <TextField id="participantsNo"required={true}  select label="Participants" value={editActivityParticipants} onChange={(e) => setEditActivityParticipants(e.target.value)} fullWidth variant="filled">
+                        {participantsNo.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => handleEdit()}>Save</Button>
+                    <Button onClick={handleCloseEdit}>Cancel</Button>
+                </DialogActions>
+            </Dialog>
+            {/* End Edit Dialog */}
+
+            {/* Delete Dialog */}
+            <Dialog open={openDelete} onClose={handleClose}>
+                <DialogContent>
+                    Are you sure you want to delete this activity?
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => deleteActivity(_id)}>Yes</Button>
+                    <Button onClick={handleClose}>No</Button>
+                </DialogActions>
+            </Dialog>
+            {/* End Delete Dialog */}
+
             <Button variant="contained" onClick={handleOpenAdd}>Add your own activity</Button>
             <Table>
                 <TableHead>
@@ -262,73 +328,6 @@ function Activities() {
                                 <Tooltip title="Delete Activity">
                                     <DeleteIcon className="delete-icon" onClick={() => handleDelete(id)} sx={{color: '#ca0000'}}/>
                                 </Tooltip>
-
-                                {/* Add Dialog */}
-                                <Dialog open={openAdd} onClose={handleCloseAdd}>
-                                    <DialogTitle>Add Activity</DialogTitle>
-                                    <DialogContent>
-                                        <TextField id="addActivityName" autoFocus={true} required={true} label="Activity" onChange={(e) => setActivityName(e.target.value)} fullWidth variant="standard"/>
-                                        <TextField id="addActivityType" required={true}  select label="Type" defaultValue="" onChange={(e) => setActivityType(e.target.value)} fullWidth variant="filled">
-                                            {activityTypes.map((option) => (
-                                                <MenuItem key={option.value} value={option.value}>
-                                                    {option.value}
-                                                </MenuItem>
-                                            ))}
-                                        </TextField>
-                                        <TextField id="addParticipantsNo" required={true} select label="Participants" defaultValue='' onChange={(e) => setActivityParticipants(e.target.value)} fullWidth variant="filled">
-                                            {participantsNo.map((option) => (
-                                                <MenuItem key={option.value} value={option.value}>
-                                                    {option.value}
-                                                </MenuItem>
-                                            ))}
-                                        </TextField>
-                                    </DialogContent>
-                                    <DialogActions>
-                                        <Button disabled={submitDisabled} onClick={() => handleAdd()}>Add</Button>
-                                        <Button onClick={handleCloseAdd}>Cancel</Button>
-                                    </DialogActions>
-                                </Dialog>
-                                {/* End Add Dialog */}
-
-                                {/* Edit Dialog */}
-                                <Dialog open={openEdit} onClose={handleCloseEdit}>
-                                    <DialogTitle>Edit Activity</DialogTitle>
-                                    <DialogContent>
-                                        <TextField id="activityName" required={true} label="Activity" value={editActivityName} onChange={(e) => setEditActivityName(e.target.value)} fullWidth variant="standard"/>
-                                        <TextField id="activityType"required={true}  select label="Type" value={editActivityType} onChange={(e) => setEditActivityType(e.target.value)} fullWidth variant="filled">
-                                            {activityTypes.map((option) => (
-                                                <MenuItem key={option.value} value={option.value}>
-                                                    {option.label}
-                                                </MenuItem>
-                                            ))}
-                                        </TextField>
-                                        <TextField id="participantsNo"required={true}  select label="Participants" value={editActivityParticipants} onChange={(e) => setEditActivityParticipants(e.target.value)} fullWidth variant="filled">
-                                            {participantsNo.map((option) => (
-                                                <MenuItem key={option.value} value={option.value}>
-                                                    {option.label}
-                                                </MenuItem>
-                                            ))}
-                                        </TextField>
-                                    </DialogContent>
-                                    <DialogActions>
-                                        <Button onClick={() => handleEdit()}>Save</Button>
-                                        <Button onClick={handleCloseEdit}>Cancel</Button>
-                                    </DialogActions>
-                                </Dialog>
-                                {/* End Edit Dialog */}
-
-                                {/* Delete Dialog */}
-                                <Dialog open={openDelete} onClose={handleClose}>
-                                    <DialogContent>
-                                        Are you sure you want to delete this activity?
-                                    </DialogContent>
-                                    <DialogActions>
-                                        <Button onClick={() => deleteActivity(_id)}>Yes</Button>
-                                        <Button onClick={handleClose}>No</Button>
-                                    </DialogActions>
-                                </Dialog>
-                                {/* End Delete Dialog */}
-
                             </TableCell>
                         </TableRow>
                         ))}
