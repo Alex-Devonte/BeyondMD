@@ -238,7 +238,7 @@ function Activities() {
     }
 
     return (
-        <div>
+        <div id="table-container">
             <Button variant="contained" onClick={handleOpenAdd}>Add your own activity</Button>
             <Table>
                 <TableHead>
