@@ -5,7 +5,6 @@ import { useState } from 'react';
 import ActivityDisplay from './components/ActivityDisplay.js';
 import Button from '@mui/material/Button';
 import { Dialog, DialogActions, DialogContent } from '@mui/material';
-import Activities from './components/Activities';
 
 
 function App() {
@@ -37,7 +36,7 @@ function App() {
         </DialogActions>
       </Dialog>{/* End Dialog */}
       <ActivityDisplay/>
-      <Activities/>
+      {/* <Activities /> */}
     </div> /*End container*/
   );
 }
