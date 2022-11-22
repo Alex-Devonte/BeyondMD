@@ -9,7 +9,7 @@ import TextField from "@mui/material/TextField";
 import DialogTitle from "@mui/material/DialogTitle";
 import MenuItem from "@mui/material/MenuItem";
 
-function Activities() {
+function Activities({newActivityStatus, setNewActivityStatus}) {
     const [activities, setActivities] = useState([{}]);
     const [_id, setId] = useState(null);
 
@@ -102,7 +102,7 @@ function Activities() {
     useEffect(() => {
         //Pull data from database after update
         GetActivities();
-    }, [activities.length]); //Only update if length of array changes
+    }, [activities.length, newActivityStatus]); //Only update if length of array changes or new activity status
 
 
     //Monitor values to determine submit button disabled status
